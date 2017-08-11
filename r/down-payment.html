@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Blank HTML5</title>
+<style>
+</style>
+    </head>
+    <body>
+
+	House price:<br />
+	<input id="houseprice" value="150"/>,000
+
+	<br /><br/>
+	Down payment: <span id="downpayment" /></span>
+
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script>
+  function calcDownPayment() {
+    var fullPrice = parseInt($('#houseprice').val());
+    fullPrice = fullPrice*1000;
+
+    finalPrice = parseInt(
+      3000 + // Closing costs
+      ( 2000 + (fullPrice * 0.001)) + // Prepaid taxes
+      (fullPrice * 0.020) // Down payment
+    );
+
+    if(finalPrice == 'NaN') {
+      finalPrice = "";
+    }
+
+    $('#downpayment').html("$" + finalPrice);
+
+  }
+
+$(document).ready(function() {
+ 
+  $('#houseprice').keyup(function() {
+    calcDownPayment();
+  });
+
+  $('html').keyup(function() {
+    calcDownPayment();
+  });
+
+
+});
+</script>
+    </body>
+</html>
