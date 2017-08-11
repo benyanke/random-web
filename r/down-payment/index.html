@@ -13,7 +13,7 @@
     <body>
 
 	House price:<br />
-	<input id="houseprice" value="150"/>,000
+	<input id="houseprice" value="150" size="3"/>,000
 
 	<br /><br/>
 	Down payment: <span id="downpayment" /></span>
@@ -24,17 +24,25 @@
     var fullPrice = parseInt($('#houseprice').val());
     fullPrice = fullPrice*1000;
 
-    finalPrice = parseInt(
-      3000 + // Closing costs
-      ( 2000 + (fullPrice * 0.001)) + // Prepaid taxes
-      (fullPrice * 0.020) // Down payment
-    );
+    if(fullPrice > 160000) {
+      finalPrice = "BUHAHAHAHAHA nice try. No $" + fullPrice/1000 + "k house for you";
+    } else {
+
+      finalPrice = "$" + numberWithCommas(parseInt(
+        3000 + // Closing costs
+        ( 2000 + (fullPrice * 0.001)) + // Prepaid taxes
+        (fullPrice * 0.020) // Down payment
+      ));
+
+    }
 
     if(finalPrice == 'NaN') {
       finalPrice = "";
     }
 
-    $('#downpayment').html("$" + numberWithCommas(finalPrice));
+    
+
+    $('#downpayment').html(finalPrice);
 
   }
 
@@ -46,7 +54,7 @@ function numberWithCommas(x) {
 $(document).ready(function() {
 
   calcDownPayment();
-
+\
   
   $('#houseprice').keyup(function() {
     calcDownPayment();
