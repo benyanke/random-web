@@ -23,9 +23,18 @@
 <link href="https://getbootstrap.com/docs/3.3/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
 
 <style>
-#slider { height:30px; }
+/* #slider { height:30px; } */
 
-span.ui-slider-handle { height:30px; width: 24px; }
+  #custom-handle {
+    width: 3em;
+    height: 2em;
+    top: 50%;
+    margin-top: -1em;
+    text-align: center;
+    line-height: 1.6em;
+  }
+
+/* span.ui-slider-handle { height:30px; width: 24px; } */
 
 </style>
 
@@ -46,7 +55,7 @@ span.ui-slider-handle { height:30px; width: 24px; }
       </div>
 <div class="jumbotron">
         <h1>Current Price: <span id="amount"></span></h1>
-	<div id="slider"></div><br/>
+	<div id="slider"><div id="custom-handle" class="ui-slider-handle"></div></div><br/>
         <p class="lead">Your down payment is:</p>
         <p><a id="downpayment" class="btn btn-lg btn-success" href="#" role="button">Sign up today</a></p>
       </div>
@@ -88,6 +97,7 @@ $(document).ready(function() {
 
   calcDownPayment();
 
+var handle = $( "#custom-handle" );
 
  $( "#slider" ).slider({
       range: "max",
